@@ -85,8 +85,8 @@ export default function GetProfit() {
     var IN=(req.Type=="Income")?req.Amount:""
     var OUT=(req.Type=="Expense")?req.Amount:""
     OverallBal+=IN-OUT
-    totalIN+=(IN).to
-    totalOut=totalOut+OUT
+    totalIN+=parseInt(IN)
+    totalOut=+parseInt(OUT)
     
     return (
         <tr key={req.Amount}>
