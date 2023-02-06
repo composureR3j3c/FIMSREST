@@ -76,20 +76,26 @@ export default function GetProfit() {
       });
   }
 
+  var totalIN=0;
+  var totalOut=0
+  var OverallBal=0;
   
   var bodyTable1 = bodyTable.map((req) => {
     // var serviceNm= req.service
-    var IN=(req.Type=="Income")?req.Amount:"-"
-    var OUT=(req.Type=="Expense")?req.Amount:"-"
+    var IN=(req.Type=="Income")?req.Amount:""
+    var OUT=(req.Type=="Expense")?req.Amount:""
+    OverallBal+=IN-OUT
+    totalIN+=(IN).to
+    totalOut=totalOut+OUT
     
     return (
-        <tr key={Date.now()}>
-           <td>{req.date}</td>
+        <tr key={req.Amount}>
+          <td>{req.date}</td>
           <td>{req.Description}</td>
           <td>{req.Type}</td>
           <td>{IN}</td>
           <td>{OUT}</td>
-          <td>{req.ID}</td>
+          <td>{OverallBal}</td>
           
         </tr>
     );
@@ -150,7 +156,16 @@ export default function GetProfit() {
               </tr>
             </thead>
             <tbody>{bodyTable1}</tbody>
-            
+            <tfoot>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr>
+                <td>total</td>
+                <td></td><td></td>
+                <td>{totalIN}</td>
+                <td>{totalOut}</td>
+                <td>{OverallBal}</td>
+              </tr>
+            </tfoot>
           </table>
           <div className="text-danger">{ErrorMessage}</div>
         </div>
