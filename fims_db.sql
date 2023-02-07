@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2023 at 01:06 PM
+-- Generation Time: Feb 07, 2023 at 01:16 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `fims_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asset`
+--
+
+CREATE TABLE `asset` (
+  `ID` int(20) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Category` varchar(255) NOT NULL DEFAULT 'Other',
+  `acqDate` date NOT NULL,
+  `Rate` varchar(255) NOT NULL,
+  `orgValue` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `asset`
+--
+
+INSERT INTO `asset` (`ID`, `Name`, `Category`, `acqDate`, `Rate`, `orgValue`) VALUES
+(3, 'Desk', 'Furniture', '2023-01-01', '5', '3600'),
+(6, 'Office Chairs', 'Furniture', '2023-01-01', '5', '3600'),
+(7, 'Office Building', 'Real Estate', '2008-01-10', '2.1', '18000000');
 
 -- --------------------------------------------------------
 
@@ -42,11 +66,21 @@ CREATE TABLE `profit` (
 INSERT INTO `profit` (`ID`, `Type`, `Amount`, `date`, `Description`) VALUES
 (20, 'Income', 10, '2023-02-06', 'sales'),
 (21, 'Income', 10000, '2023-02-06', 'sales'),
-(22, 'Expense', 2056, '2023-02-06', 'Inventory expense');
+(22, 'Expense', 2056, '2023-02-06', 'Inventory expense'),
+(23, 'Expense', 1200, '2023-02-07', 'Inventory expense'),
+(29, 'Expense', 20000, '2023-02-07', 'Employee salary'),
+(30, 'Income', 254000, '2023-02-07', 'Investment Return'),
+(31, 'Expense', 0, '2023-02-07', '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `asset`
+--
+ALTER TABLE `asset`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `profit`
@@ -59,10 +93,16 @@ ALTER TABLE `profit`
 --
 
 --
+-- AUTO_INCREMENT for table `asset`
+--
+ALTER TABLE `asset`
+  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `profit`
 --
 ALTER TABLE `profit`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
