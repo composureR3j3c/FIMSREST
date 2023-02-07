@@ -5,6 +5,7 @@ import NavBar from './Navbar';
 import GetProfit from './content/getProfit';
 import UpdateProfit from './content/updateProfit';
 import FixedAsset from './content/fixedAsset';
+import UpdateAsset from './content/updateAsset';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
       <Route path="/" element={<GetProfit />} />
       <Route path="/addProfit" element={<UpdateProfit />} />
+      <Route path="/addAsset" element={<UpdateAsset />} />
       <Route path="/asset" element={<FixedAsset/>}/>
       </Routes>
        

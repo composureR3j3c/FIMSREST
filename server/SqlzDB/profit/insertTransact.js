@@ -1,4 +1,4 @@
-const { conn, sqlize } = require("./conn");
+const { conn, sqlize } = require("../conn");
 
 async function insertProfit(Type,Amount,Description
   ) {

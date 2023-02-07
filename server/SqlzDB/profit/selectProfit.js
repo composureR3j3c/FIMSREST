@@ -1,11 +1,11 @@
-const { conn, sqlize } = require("./conn");
+const { conn, sqlize } = require("../conn");
 
 async function selectProfit(
   ) {
     try {
       conn();
       const [results, metadata] = await sqlize.query(
-        `SELECT * FROM profit ORDER BY date DESC;`
+        `SELECT * FROM profit ORDER BY date;`
       );
       console.log(results)
       return results;

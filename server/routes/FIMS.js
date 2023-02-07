@@ -9,5 +9,8 @@ router.get('/checkDB', fimService.checkDB)
 router.get('/profit', fimService.profit)
 router.post('/addTransaction',fimService.addTransaction)
 
+router.get('/asset', fimService.asset)
+router.post('/addAsset',fimService.addAsset)
+
 
 module.exports = router

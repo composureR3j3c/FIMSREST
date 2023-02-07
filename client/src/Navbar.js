@@ -22,8 +22,13 @@ return (
               </a>
             </li>
             <li className="nav-item ">
+              <a className="nav-link" href="/addAsset">
+                Add Fixed Asset
+              </a>
+            </li>
+            <li className="nav-item ">
               <a className="nav-link" href="/asset">
-              Asset
+              Fixed Asset
               </a>
             </li>
           </ul>

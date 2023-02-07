@@ -160,7 +160,9 @@ export default function GetProfit() {
                 <th scope="col">
                   <p className="p-2">Overall Balance</p>
                 </th>
-               
+                <th scope="col">
+                  <p className="p-2"></p>
+                </th>
               </tr>
             </thead>
             <tbody>{bodyTable1}</tbody>
@@ -171,7 +173,7 @@ export default function GetProfit() {
                 <td>{totalIN}</td>
                 <td>{totalOut}</td>
                 <td>{OverallBal}</td>
-                
+                <td></td>
                 
               </tr>
             </tfoot>
