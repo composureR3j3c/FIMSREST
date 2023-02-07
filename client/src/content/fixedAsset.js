@@ -23,7 +23,7 @@ const customStyles = {
 
 // export var graphPoints=[]
 
-export default function GetProfit() {
+export default function FixedAsset() {
  
   const [Div1Class, setDiv1Class] = useState(
     "row justify-content-center d-flex align-items-center "
