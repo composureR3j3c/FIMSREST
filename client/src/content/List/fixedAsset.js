@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // import LC from "./linecharts/lineCt";
-import "./spinner.css";
+import "../spinner.css";
 
 
 const customStyles = {
@@ -23,7 +23,7 @@ const customStyles = {
 
 // export var graphPoints=[]
 
-export default function GetProfit() {
+export default function FixedAsset() {
  
   const [Div1Class, setDiv1Class] = useState(
     "row justify-content-center d-flex align-items-center "
@@ -57,7 +57,7 @@ export default function GetProfit() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    fetch("http://localhost:5000/profit", {
+    fetch("http://localhost:5000/asset", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -76,35 +76,25 @@ export default function GetProfit() {
       });
   }
 
-  var totalIN=0;
-  var totalOut =0;
-  var OverallBal=0;
+ 
   
   var bodyTable1 = bodyTable.map((req) => {
     // var serviceNm= req.service
-    var IN=(req.Type=="Income")?req.Amount:0
-    var OUT=(req.Type=="Expense")?req.Amount:0
-    OverallBal+=IN-OUT
-    totalIN+=parseInt(IN)
-    totalOut=+parseInt(OUT)
-    
+    var annual=parseFloat(req.Rate)*parseFloat(req.orgValue)/100
+    var now= new Date()
+    var dateDiff=
+    (now).getFullYear()- req.acqDate.toString().substring(0,4);
+    var val=parseFloat(req.orgValue)-(dateDiff*parseFloat(annual));
     return (
         <tr key={req.Amount}>
-          <td>{req.date}</td>
-          <td>{req.Description}</td>
-          <td>{req.Type}</td>
-          <td>{IN}</td>
-          <td>{OUT}</td>
-          <td>{OverallBal}</td>
-          <td>
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-            }}
-          >
-            DELETE
-          </button>
-        </td>
+          <td>{req.Name}</td>
+          <td>{req.Category}</td>
+          <td>Br. {req.orgValue}</td>
+          <td>{req.acqDate}</td>
+          <td>{req.Rate}%</td>
+          <td>{annual}</td>
+          <td>{dateDiff}</td>
+          <td>Br. {val}</td>
         </tr>
     );
   });
@@ -143,37 +133,42 @@ export default function GetProfit() {
             <thead>
               <tr>
                 <th scope="col">
-                  <p className="p-2">Date</p>
-                </th>
-                <th scope="col">
-                  <p className="p-2">Description</p>
+                  <p className="p-2">Asset Name</p>
                 </th>
                 <th scope="col">
                   <p className="p-2">Category</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Income<br/>(Money IN)</p>
+                  <p className="p-2">Original Value</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Expense<br/>(Money Out)</p>
+                  <p className="p-2">Acquisition Date</p>
+                </th>
+               
+                <th scope="col">
+                  <p className="p-2">Depreciation Rate</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Overall Balance</p>
+                  <p className="p-2">Annual Depreciation</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2"></p>
+                  <p className="p-2">Years since Accusation</p>
                 </th>
+                <th scope="col">
+                  <p className="p-2">Current Value</p>
+                </th>
+                
               </tr>
             </thead>
             <tbody>{bodyTable1}</tbody>
             <tfoot>
               <tr>
-                <td>total</td>
+                {/* <td>total</td>
                 <td></td><td></td>
                 <td>{totalIN}</td>
                 <td>{totalOut}</td>
                 <td>{OverallBal}</td>
-                <td></td>
+                 */}
                 
               </tr>
             </tfoot>

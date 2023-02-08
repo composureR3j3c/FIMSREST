@@ -50,7 +50,7 @@ body{
 }
 .navbar
 {
-  /* background-color: black !important; */
+  background-color: #17A2B8 !important;
 }
 .nav-link, .navbar-brand{
   color: azure !important; 
