@@ -11,6 +11,7 @@ import FixedAsset from './content/List/fixedAsset';
 import GetRecieveble from './content/List/getRecieveble';
 import AddRecieveble from './content/Update/addRecieveble';
 import GetPayable from './content/List/getPayable';
+import AddPayable from './content/Update/addPayable';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
       <Route path="/getPayable" element={<GetPayable />} />
       <Route path="/getRecieveble" element={<GetRecieveble />} />
       {/* <Route path="/addRecieveble" element={<AddRecieveble/>}/> */}
-      {/* <Route path="/addPayable" element={<AddPayable />} /> */}
+      <Route path="/addPayable" element={<AddPayable />} />
       </Routes>
        
     </div>

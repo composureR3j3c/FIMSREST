@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2023 at 01:16 PM
+-- Generation Time: Feb 10, 2023 at 02:19 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -48,6 +48,29 @@ INSERT INTO `asset` (`ID`, `Name`, `Category`, `acqDate`, `Rate`, `orgValue`) VA
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payable`
+--
+
+CREATE TABLE `payable` (
+  `ID` int(11) NOT NULL,
+  `Date` date NOT NULL,
+  `DueDate` date NOT NULL,
+  `Amount` decimal(10,0) NOT NULL,
+  `Invoice` varchar(255) NOT NULL,
+  `Supplier` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payable`
+--
+
+INSERT INTO `payable` (`ID`, `Date`, `DueDate`, `Amount`, `Invoice`, `Supplier`) VALUES
+(2, '2022-02-01', '2024-02-01', '1000', '256-X5', 'CBE'),
+(3, '0000-00-00', '2027-02-01', '1020100', '25e6-X5', 'BOA');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `profit`
 --
 
@@ -69,8 +92,7 @@ INSERT INTO `profit` (`ID`, `Type`, `Amount`, `date`, `Description`) VALUES
 (22, 'Expense', 2056, '2023-02-06', 'Inventory expense'),
 (23, 'Expense', 1200, '2023-02-07', 'Inventory expense'),
 (29, 'Expense', 20000, '2023-02-07', 'Employee salary'),
-(30, 'Income', 254000, '2023-02-07', 'Investment Return'),
-(31, 'Expense', 0, '2023-02-07', '');
+(30, 'Income', 254000, '2023-02-07', 'Investment Return');
 
 --
 -- Indexes for dumped tables
@@ -80,6 +102,12 @@ INSERT INTO `profit` (`ID`, `Type`, `Amount`, `date`, `Description`) VALUES
 -- Indexes for table `asset`
 --
 ALTER TABLE `asset`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `payable`
+--
+ALTER TABLE `payable`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -99,10 +127,16 @@ ALTER TABLE `asset`
   MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `payable`
+--
+ALTER TABLE `payable`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `profit`
 --
 ALTER TABLE `profit`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
