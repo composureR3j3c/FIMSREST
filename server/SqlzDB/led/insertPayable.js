@@ -11,6 +11,7 @@ async function insertPayable(  DueDate,
         `INSERT INTO payable (Date, DueDate, Amount, Invoice, Supplier) VALUES 
         ('${Date.now()}', '${DueDate}', '${Amount}', '${Invoice}','${Supplier}');`
       );
+      console.log(Date.now())
       console.log(results)
       return results;
     }catch(ex){

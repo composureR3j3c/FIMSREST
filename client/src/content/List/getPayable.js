@@ -151,23 +151,21 @@ export default function GetPayable() {
                 <th scope="col">
                   <p className="p-2">Balance Due</p>
                 </th>
-                <th scope="col">
-                  <p className="p-2"></p>
-                </th>
+               
               </tr>
             </thead>
             <tbody>{bodyTable1}</tbody>
-            <tfoot>
+            {/* <tfoot>
               <tr>
                 <td>total</td>
-                <td></td><td></td>
+                <td></td>
                 <td>{totalIN}</td>
                 <td>{totalOut}</td>
                 <td>{OverallBal}</td>
                 <td></td>
                 
               </tr>
-            </tfoot>
+            </tfoot> */}
           </table>
           <div className="text-danger">{ErrorMessage}</div>
         </div>

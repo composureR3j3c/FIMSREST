@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker"
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function UpdateAsset() {
 
 const [Name,setName,]=useState("")
 const [Category,setCategory,]=useState("")
-const [acqDate,setacqDate,]=useState("")
+const [acqDate,setacqDate,]=useState(new Date())
 const [Rate,setRate,]=useState("")
 const [orgValue,setorgValue]=useState("")
 const [ErrorMessage,setErrorMessage]=useState("")
@@ -55,11 +58,7 @@ let history = useNavigate();
         className="form-control m-3"
         placeholder="Enter Category"
         value={Category} onChange={(e)=>  {setCategory(e.target.value)}}/>
-      <input
-        type="text"
-        className="form-control m-3"
-        placeholder="Enter Acquisition Date"
-        value={acqDate} onChange={(e)=>  {setacqDate(e.target.value)}}/>
+        
       <input
         type="text"
         className="form-control m-3"
@@ -70,6 +69,15 @@ let history = useNavigate();
         className="form-control m-3"
         placeholder="Enter Orginal Value"
         value={orgValue} onChange={(e)=>  {setorgValue(e.target.value)}}/>
+        <div>Date of Accustaion</div>
+        <DatePicker
+        
+        label="Enter Category"
+            className=" form-control text-dark m-3 "
+            selected={acqDate}
+            dateFormat="Pp"
+            onChange={(date) => setacqDate(date)}
+          />
       {ErrorMessage}
       <button onClick={addItem} className='btn btn-success'>ADD</button>
       </div>
