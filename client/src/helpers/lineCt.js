@@ -14,7 +14,7 @@ export default function LC() {
     ];
     return (
         <div className='d-flex justify-content-center'>
-            <div className="LC bg-info d-flex justify-content-center mb-2 p-2">
+            <div className="LC bg-warning d-flex justify-content-center mb-2 p-2">
                 {/* <h6>Respose Time </h6> */}
                 <LineChart 
                     width={900}
