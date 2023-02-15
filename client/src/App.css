@@ -36,15 +36,46 @@
     transform: rotate(360deg);
   }
 }
-
+.App{
+  display:flex !important;
+  flex-direction: column !important;
+  min-height: 100% !important;
+}
 
 body{
-  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   font-family: 'Roboto';
-  height: 100vh;
-  display: flex;
-  /* align-items: center; */
-  justify-content: center;
+  /* height: 100vh;
  background: #0f0c29;  /* fallback for old browsers */
  background: linear-gradient(109.6deg, rgba(0, 0, 0, 0.93) 11.2%, rgb(7, 23, 31) 78.9%);
+}
+.Zeyada{
+  font-family:'Pacifico';
+}
+.navbar
+{
+  background-color: #17A2B8 !important;
+}
+.nav-link, .navbar-brand{
+  color: azure !important; 
+}
+.img-fluid{
+  height: 200px !important;
+}
+h1{
+  font-size: 18px !important;
+}
+td{
+  background-color: aquamarine;
+}
+
+.form-control{
+  margin-top: 10px;
+  border-color: black;
+}
+.btn-success{
+  margin-top: 10pt;
+  float:left;
+}
+option{
+  text-align: center;
 }

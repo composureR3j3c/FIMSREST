@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import deleteData from "../../helpers/deleteData";
 
 // import LC from "./linecharts/lineCt";
-import "./spinner.css";
+import "../spinner.css";
 
 
 const customStyles = {
@@ -23,7 +24,7 @@ const customStyles = {
 
 // export var graphPoints=[]
 
-export default function GetProfit() {
+export default function GetPayable() {
  
   const [Div1Class, setDiv1Class] = useState(
     "row justify-content-center d-flex align-items-center "
@@ -45,7 +46,6 @@ export default function GetProfit() {
   const [bodyTable, setbodyTable] = useState([]);
 
   const [ErrorMessage, setErrorMessage] = useState("");
-  const [Ttype, setTtype] = useState("Apollo");
 
   var transactionType = {};
 
@@ -57,7 +57,7 @@ export default function GetProfit() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    fetch("http://localhost:5000/profit", {
+    await fetch("http://10.5.32.70:5000/payable", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -77,26 +77,53 @@ export default function GetProfit() {
   }
 
   var totalIN=0;
-  var totalOut=0
+  var totalOut =0;
   var OverallBal=0;
   
-  var bodyTable1 = bodyTable.map((req) => {
-    // var serviceNm= req.service
-    var IN=(req.Type=="Income")?req.Amount:""
-    var OUT=(req.Type=="Expense")?req.Amount:""
+  var bodyTable1 = bodyTable.map((res) => {
+    // var serviceNm= res.service
+    var IN=(res.Type=="Income")?res.Amount:0
+    var OUT=(res.Type=="Expense")?res.Amount:0
     OverallBal+=IN-OUT
     totalIN+=parseInt(IN)
     totalOut=+parseInt(OUT)
     
     return (
-        <tr key={req.Amount}>
-          <td>{req.date}</td>
-          <td>{req.Description}</td>
-          <td>{req.Type}</td>
-          <td>{IN}</td>
-          <td>{OUT}</td>
-          <td>{OverallBal}</td>
-          
+        <tr key={res.Amount}>
+          <td>{res.Date}</td>
+          <td>{res.Invoice}</td>
+          <td>{res.Supplier}</td>
+          <td>Br. {res.Amount}</td>
+          <td>{res.DueDate}</td>
+          <td>Br. {res.Amount}</td>
+          <td><button
+            onClick={() => {
+              // openModal();
+              // getDetail(req.ID);
+            }}
+            className="btn btn-info"
+          >
+            Payment Deatil
+          </button>
+          <button
+            onClick={() => {
+              // openModal();
+              // getDetail(req.ID);
+            }}
+            className="btn btn-warning m-2"
+          >
+           Edit
+          </button>
+          <button
+            onClick={() => { 
+              deleteData("payable",res.ID);
+              window.location.reload(false);
+            }}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
+          </td>
         </tr>
     );
   });
@@ -119,10 +146,10 @@ export default function GetProfit() {
         <div className={Div1Class}>
           <div className="col-lg-12 ">
             {/* <p>{Ttype} API calls</p> */}
-            
+{/*             
             <button onClick={loadBody} type="reload" className={btnClass}>
               Refresh
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -138,34 +165,37 @@ export default function GetProfit() {
                   <p className="p-2">Date</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Description</p>
+                  <p className="p-2">Invoice Number</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Category</p>
+                  <p className="p-2">Supplier</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Income<br/>(Money IN)</p>
+                  <p className="p-2">Total Amount</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Expense<br/>(Money Out)</p>
+                  <p className="p-2">Due Date</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Overall Balance</p>
+                  <p className="p-2">Balance Due</p>
                 </th>
-               
+                <th scope="col">
+                  <p className="p-2">Manage</p>
+                </th>
               </tr>
             </thead>
             <tbody>{bodyTable1}</tbody>
-            <tfoot>
-              <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            {/* <tfoot>
               <tr>
                 <td>total</td>
-                <td></td><td></td>
+                <td></td>
                 <td>{totalIN}</td>
                 <td>{totalOut}</td>
                 <td>{OverallBal}</td>
+                <td></td>
+                
               </tr>
-            </tfoot>
+            </tfoot> */}
           </table>
           <div className="text-danger">{ErrorMessage}</div>
         </div>
