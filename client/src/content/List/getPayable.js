@@ -115,7 +115,7 @@ export default function GetPayable() {
            Edit
           </button>
           <button
-            onClick={() => {
+            onClick={() => { 
               deleteData("payable",res.ID);
               window.location.reload(false);
             }}

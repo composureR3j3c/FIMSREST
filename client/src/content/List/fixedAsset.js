@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import deleteData from "../../helpers/deleteData";
 
 // import LC from "./linecharts/lineCt";
 import "../spinner.css";
@@ -20,7 +21,7 @@ const customStyles = {
   },
 };
 
-
+ 
 // export var graphPoints=[]
 
 export default function FixedAsset() {
@@ -78,23 +79,34 @@ export default function FixedAsset() {
 
  
   
-  var bodyTable1 = bodyTable.map((req) => {
-    // var serviceNm= req.service
-    var annual=parseFloat(req.Rate)*parseFloat(req.orgValue)/100
+  var bodyTable1 = bodyTable.map((res) => {
+    // var serviceNm= res.service
+    var annual=parseFloat(res.Rate)*parseFloat(res.orgValue)/100
     var now= new Date()
     var dateDiff=
-    (now).getFullYear()- req.acqDate.toString().substring(0,4);
-    var val=parseFloat(req.orgValue)-(dateDiff*parseFloat(annual));
+    (now).getFullYear()- res.acqDate.toString().substring(0,4);
+    var val=parseFloat(res.orgValue)-(dateDiff*parseFloat(annual));
     return (
-        <tr key={req.Amount}>
-          <td>{req.Name}</td>
-          <td>{req.Category}</td>
-          <td>Br. {req.orgValue}</td>
-          <td>{req.acqDate}</td>
-          <td>{req.Rate}%</td>
+        <tr key={res.Amount}>
+          <td>{res.Name}</td>
+          <td>{res.Category}</td>
+          <td>Br. {res.orgValue}</td>
+          <td>{res.acqDate}</td>
+          <td>{res.Rate}%</td>
           <td>{annual}</td>
           <td>{dateDiff}</td>
           <td>Br. {val}</td>
+          <td>
+          <button
+            onClick={() => { 
+              deleteData("asset",res.ID);
+              window.location.reload(false);
+            }}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
+          </td>
         </tr>
     );
   });

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import deleteData from "../../helpers/deleteData";
 
 // import LC from "./linecharts/lineCt";
 import "../spinner.css";
@@ -80,31 +81,32 @@ export default function GetProfit() {
   var totalOut =0;
   var OverallBal=0;
   
-  var bodyTable1 = bodyTable.map((req) => {
-    // var serviceNm= req.service
-    var IN=(req.Type=="Income")?req.Amount:0
-    var OUT=(req.Type=="Expense")?req.Amount:0
+  var bodyTable1 = bodyTable.map((res) => {
+    // var serviceNm= res.service
+    var IN=(res.Type=="Income")?res.Amount:0
+    var OUT=(res.Type=="Expense")?res.Amount:0
     OverallBal+=IN-OUT
     totalIN+=parseInt(IN)
     totalOut=+parseInt(OUT)
     
     return (
-        <tr key={req.Amount}>
-          <td>{req.date}</td>
-          <td>{req.Description}</td>
-          <td>{req.Type}</td>
+        <tr key={res.Amount}>
+          <td>{res.date}</td>
+          <td>{res.Description}</td>
+          <td>{res.Type}</td>
           <td>{IN}</td>
           <td>{OUT}</td>
           <td>{OverallBal}</td>
-          {/* <td>
-          <button
-            className="btn btn-danger"
-            onClick={() => {
+          <td><button
+            onClick={() => { 
+              deleteData("profit",res.ID);
+              window.location.reload(false);
             }}
+            className="btn btn-danger"
           >
-            DELETE
+            Delete
           </button>
-        </td> */}
+          </td>
         </tr>
     );
   });
@@ -171,9 +173,9 @@ export default function GetProfit() {
                 <td>total</td>
                 <td></td><td></td>
                 <td>{totalIN}</td>
-                <td>{totalOut}</td>
+                <td>{totalOut}</td> 
                 <td>{OverallBal}</td>
-                {/* <td></td> */}
+                
                 
               </tr>
             </tfoot>
