@@ -10,8 +10,13 @@ export default function NavBar() {
         </a>
         <div className="collapse navbar-collapse " id="navbarNav">
           <ul className="navbar-nav mx-auto ">
+          <li className="nav-item active">
+              <a className="nav-link text-warning mr-5 " href="/">
+                Home
+              </a>
+            </li>
             <li className="nav-item active">
-              <a className="nav-link" href="/">
+              <a className="nav-link" href="/profit">
                 Profit
               </a>
             </li>
@@ -27,8 +32,8 @@ export default function NavBar() {
               </a>
             </li>
             <li className="nav-item ">
-              <a className="nav-link" href="/getRecieveble">
-                Recieveble  
+              <a className="nav-link" href="/getReceivable">
+                Receivable  
               </a>
             </li>
             <Dropdown>
@@ -39,7 +44,7 @@ export default function NavBar() {
               <Dropdown.Menu>
                 <Dropdown.Item href="/addAsset"> Add Fixed Asset</Dropdown.Item>
                 <Dropdown.Item href="/addProfit">Add Profit</Dropdown.Item>
-                <Dropdown.Item href="/addRecieveble"> Add Recieveble</Dropdown.Item>
+                <Dropdown.Item href="/addReceivable"> Add Receivable</Dropdown.Item>
                 <Dropdown.Item href="/addPayable">Add Payable</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

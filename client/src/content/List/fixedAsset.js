@@ -169,7 +169,7 @@ export default function FixedAsset() {
                 <th scope="col">
                   <p className="p-2">Current Value</p>
                 </th>
-                
+                <th></th>
               </tr>
             </thead>
             <tbody>{bodyTable1}</tbody>

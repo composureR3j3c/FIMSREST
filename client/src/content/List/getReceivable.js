@@ -26,7 +26,7 @@ const customStyles = {
 
 // export var graphPoints=[]
 
-export default function GetRecieveble() {
+export default function GetReceivable() {
  let history = useNavigate();
   const [Div1Class, setDiv1Class] = useState(
     "row justify-content-center d-flex align-items-center "
