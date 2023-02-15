@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2023 at 02:19 PM
+-- Generation Time: Feb 15, 2023 at 02:05 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -33,17 +33,19 @@ CREATE TABLE `asset` (
   `Category` varchar(255) NOT NULL DEFAULT 'Other',
   `acqDate` date NOT NULL,
   `Rate` varchar(255) NOT NULL,
-  `orgValue` decimal(10,0) NOT NULL
+  `orgValue` decimal(10,0) NOT NULL,
+  `deleted` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `asset`
 --
 
-INSERT INTO `asset` (`ID`, `Name`, `Category`, `acqDate`, `Rate`, `orgValue`) VALUES
-(3, 'Desk', 'Furniture', '2023-01-01', '5', '3600'),
-(6, 'Office Chairs', 'Furniture', '2023-01-01', '5', '3600'),
-(7, 'Office Building', 'Real Estate', '2008-01-10', '2.1', '18000000');
+INSERT INTO `asset` (`ID`, `Name`, `Category`, `acqDate`, `Rate`, `orgValue`, `deleted`) VALUES
+(3, 'Desk', 'Furniture', '2023-01-01', '5', '3600', 1),
+(6, 'Office Chairs', 'Furniture', '2023-01-01', '5', '3600', 0),
+(7, 'Office Building', 'Real Estate', '2008-01-10', '2.1', '18000000', 0),
+(9, 'Warehouse', 'Real Estate', '2023-02-15', '2.3', '12000000', 0);
 
 -- --------------------------------------------------------
 
@@ -57,16 +59,25 @@ CREATE TABLE `payable` (
   `DueDate` date NOT NULL,
   `Amount` decimal(10,0) NOT NULL,
   `Invoice` varchar(255) NOT NULL,
-  `Supplier` varchar(255) NOT NULL
+  `Supplier` varchar(255) NOT NULL,
+  `deleted` int(1) DEFAULT 0,
+  `type` varchar(255) DEFAULT 'pay'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `payable`
 --
 
-INSERT INTO `payable` (`ID`, `Date`, `DueDate`, `Amount`, `Invoice`, `Supplier`) VALUES
-(2, '2022-02-01', '2024-02-01', '1000', '256-X5', 'CBE'),
-(3, '0000-00-00', '2027-02-01', '1020100', '25e6-X5', 'BOA');
+INSERT INTO `payable` (`ID`, `Date`, `DueDate`, `Amount`, `Invoice`, `Supplier`, `deleted`, `type`) VALUES
+(2, '2022-02-01', '2024-02-01', '1000', '256-X5', 'CBE', 0, 'pay'),
+(3, '2023-02-01', '2027-02-01', '1020100', '25e6-X5', 'BOA', 0, 'pay'),
+(4, '2023-02-07', '2027-02-01', '500000', '2PX-1234', 'Silent Investor II ', 0, 'pay'),
+(5, '2023-02-07', '2024-08-08', '4000000', '2PSWE-44', 'Bonds', 0, 'pay'),
+(6, '2023-02-02', '2030-01-01', '20500000', 'WPR-2JL', 'Star Corp.', 1, 'pay'),
+(7, '2023-02-02', '2024-02-03', '10000', 'IYT-90DE', 'Employee Bonds', 0, 'pay'),
+(8, '2023-02-15', '2023-04-13', '20000', 'jsx-11-sa', 'Paertx Commercial PLC.', 1, 'pay'),
+(17, '2023-02-01', '2023-05-06', '1000', 'A112', 'THS Corp.', 0, 'rec'),
+(19, '2023-02-15', '2023-08-05', '30000', 'A1212', 'Setex PLC', 0, 'rec');
 
 -- --------------------------------------------------------
 
@@ -78,21 +89,22 @@ CREATE TABLE `profit` (
   `ID` int(255) NOT NULL,
   `Type` varchar(255) NOT NULL DEFAULT 'Expense',
   `Amount` int(255) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
-  `Description` varchar(255) NOT NULL
+  `date` date NOT NULL,
+  `Description` varchar(255) NOT NULL,
+  `deleted` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `profit`
 --
 
-INSERT INTO `profit` (`ID`, `Type`, `Amount`, `date`, `Description`) VALUES
-(20, 'Income', 10, '2023-02-06', 'sales'),
-(21, 'Income', 10000, '2023-02-06', 'sales'),
-(22, 'Expense', 2056, '2023-02-06', 'Inventory expense'),
-(23, 'Expense', 1200, '2023-02-07', 'Inventory expense'),
-(29, 'Expense', 20000, '2023-02-07', 'Employee salary'),
-(30, 'Income', 254000, '2023-02-07', 'Investment Return');
+INSERT INTO `profit` (`ID`, `Type`, `Amount`, `date`, `Description`, `deleted`) VALUES
+(20, 'Income', 10, '2023-02-06', 'sales', 0),
+(21, 'Income', 10000, '2023-02-06', 'sales', 0),
+(22, 'Expense', 2056, '2023-02-06', 'Inventory expense', 0),
+(23, 'Expense', 1200, '2023-02-07', 'Inventory expense', 0),
+(29, 'Expense', 20000, '2023-02-07', 'Employee salary', 0),
+(30, 'Income', 254000, '2023-02-07', 'Investment Return', 0);
 
 --
 -- Indexes for dumped tables
@@ -124,13 +136,13 @@ ALTER TABLE `profit`
 -- AUTO_INCREMENT for table `asset`
 --
 ALTER TABLE `asset`
-  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `payable`
 --
 ALTER TABLE `payable`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `profit`
