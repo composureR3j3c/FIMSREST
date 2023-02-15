@@ -14,7 +14,7 @@ const [ErrorMessage,setErrorMessage]=useState("")
 
 let history = useNavigate();
 
-  function addItem(params) {
+async function addItem  (params) {
     var item={
       Date:new Date(),
       Amount:Amount,
@@ -22,7 +22,7 @@ let history = useNavigate();
       Invoice:Invoice,
       Supplier:Supplier
     }
-    fetch("http://10.5.32.70:5000/addPayable", {
+     await fetch("http://10.5.32.70:5000/addPayable", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

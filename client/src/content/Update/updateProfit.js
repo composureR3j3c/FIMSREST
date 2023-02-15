@@ -11,13 +11,13 @@ export default function UpdateProfit() {
   const [ErrorMessage, setErrorMessage] = useState("");
   let history = useNavigate();
 
-  function addItem(params) {
+  async function addItem(params) {
     var item={
       Type:tType,
       Amount:Amount,
       Desc:Desc
     }
-    fetch("http://10.5.32.70:5000/addTransaction", {
+    await fetch("http://10.5.32.70:5000/addTransaction", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

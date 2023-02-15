@@ -1,6 +1,7 @@
 const express = require("express");
 const { insertAsset } = require("../SqlzDB/asset/insertAsset");
 const { selectAsset } = require("../SqlzDB/asset/selectAsset");
+const { deleteRecord } = require("../SqlzDB/delete/deleteRec");
 const { insertProfit } = require("../SqlzDB/profit/insertTransact");
 const { selectProfit } = require("../SqlzDB/profit/selectProfit");
 const { checkDBconn } = require("../SqlzDB/selectTest");
@@ -8,6 +9,12 @@ const { checkDBconn } = require("../SqlzDB/selectTest");
 exports.checkSrv = (req, res) => {
   res.status(200).send({ message: "Server UP!" });
 };
+
+exports.deleteRecord = async (req, res)=>{
+  dbData = await deleteRecord(req.body.table,req.body.ID);
+
+  res.status(200).header("Content-Type", "application/json").send({ dbData });
+}
 
 exports.checkDB = async (req, res) => {
   dbData = await checkDBconn();

@@ -57,7 +57,7 @@ export default function GetProfit() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    fetch("http://10.5.32.70:5000/profit", {
+    await fetch("http://10.5.32.70:5000/profit", {
       method: "GET",
     })
       .then((response) => response.json())

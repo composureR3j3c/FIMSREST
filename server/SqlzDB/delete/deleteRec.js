@@ -1,11 +1,11 @@
 const { conn, sqlize } = require("../conn");
 
-async function selectProfit(
+async function deleteRecord( table,id
   ) {
     try {
       conn();
-      const [results, metadata] = await sqlize.query(
-        `SELECT * FROM profit WHERE deleted=0  ORDER BY date;`
+      const results = await sqlize.query(
+        `UPDATE ${table} SET deleted=1 WHERE ID=${id};`
       );
       console.log(results)
       return results;
@@ -14,4 +14,4 @@ async function selectProfit(
 }
 }
 
-module.exports ={selectProfit}
+module.exports ={deleteRecord}

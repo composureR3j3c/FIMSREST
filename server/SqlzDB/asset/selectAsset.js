@@ -5,7 +5,7 @@ async function selectAsset(
     try {
       conn();
       const [results, metadata] = await sqlize.query(
-        `SELECT * FROM asset ORDER BY acqdate;`
+        `SELECT * FROM asset WHERE deleted=0 ORDER BY acqdate;`
       );
       console.log(results)
       return results;

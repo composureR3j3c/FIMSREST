@@ -5,7 +5,7 @@ async function selectPayable(
     try {
       conn();
       const [results, metadata] = await sqlize.query(
-        `SELECT * FROM payable where type='${type}' ORDER BY date;`
+        `SELECT * FROM payable where type='${type}' and deleted=0 ORDER BY date;`
       );
       console.log(results)
       return results;

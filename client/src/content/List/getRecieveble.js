@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import deleteData from "../../helpers/deleteData";
+
+import { useNavigate } from "react-router-dom";
 
 // import LC from "./linecharts/lineCt";
 import "../spinner.css";
@@ -24,7 +27,7 @@ const customStyles = {
 // export var graphPoints=[]
 
 export default function GetRecieveble() {
- 
+ let history = useNavigate();
   const [Div1Class, setDiv1Class] = useState(
     "row justify-content-center d-flex align-items-center "
   );
@@ -56,7 +59,7 @@ export default function GetRecieveble() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    fetch("http://10.5.32.70:5000/recievable", {
+    await fetch("http://10.5.32.70:5000/recievable", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -115,8 +118,8 @@ export default function GetRecieveble() {
           </button>
           <button
             onClick={() => {
-              // openModal();
-              // getDetail(req.ID);
+              deleteData("payable",res.ID);
+              window.location.reload(false);
             }}
             className="btn btn-danger"
           >

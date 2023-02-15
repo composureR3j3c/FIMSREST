@@ -16,7 +16,7 @@ const [ErrorMessage,setErrorMessage]=useState("")
 
 let history = useNavigate();
 
-  function addItem(params) {
+  async function addItem(params) {
     var item={
       Name:Name,
       Category:Category,
@@ -24,7 +24,7 @@ let history = useNavigate();
       Rate:Rate,
       orgValue:orgValue
     }
-    fetch("http://10.5.32.70:5000/addAsset", {
+    await fetch("http://10.5.32.70:5000/addAsset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

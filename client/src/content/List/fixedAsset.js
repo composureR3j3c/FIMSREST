@@ -57,7 +57,7 @@ export default function FixedAsset() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    fetch("http://10.5.32.70:5000/asset", {
+    await fetch("http://10.5.32.70:5000/asset", {
       method: "GET",
     })
       .then((response) => response.json())

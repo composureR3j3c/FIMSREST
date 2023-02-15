@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import deleteData from "../../helpers/deleteData";
 
 // import LC from "./linecharts/lineCt";
 import "../spinner.css";
@@ -56,7 +57,7 @@ export default function GetPayable() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    fetch("http://10.5.32.70:5000/payable", {
+    await fetch("http://10.5.32.70:5000/payable", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -115,8 +116,8 @@ export default function GetPayable() {
           </button>
           <button
             onClick={() => {
-              // openModal();
-              // getDetail(req.ID);
+              deleteData("payable",res.ID);
+              window.location.reload(false);
             }}
             className="btn btn-danger"
           >
