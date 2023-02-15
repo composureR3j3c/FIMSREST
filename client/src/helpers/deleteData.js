@@ -5,7 +5,7 @@ export default async function deleteData(table,ID) {
       }
       
 
-    await fetch("http://10.5.32.70:5000/delete", {
+    await fetch("http://127.0.0.1:5000/delete", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

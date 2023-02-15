@@ -4,6 +4,7 @@ import deleteData from "../../helpers/deleteData";
 // import LC from "./linecharts/lineCt";
 import "../spinner.css";
 
+export var graphPoints=[];
 
 const customStyles = {
   content: {
@@ -58,7 +59,7 @@ export default function GetProfit() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    await fetch("http://10.5.32.70:5000/profit", {
+    await fetch("http://127.0.0.1:5000/profit", {
       method: "GET",
     })
       .then((response) => response.json())

@@ -24,7 +24,7 @@ let history = useNavigate();
       Rate:Rate,
       orgValue:orgValue
     }
-    await fetch("http://10.5.32.70:5000/addAsset", {
+    await fetch("http://127.0.0.1:5000/addAsset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

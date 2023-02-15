@@ -4,13 +4,13 @@ export default function Home() {
   return (
     <div>
       <p className="text-light">Profit</p>
-      <LC /> 
+      <LC color="green"/> 
       <p className="text-light">Fixed Asset</p>
-      <LC />
+      {/* <LC />
       <p className="text-light">Account Payable</p>
       <LC />
       <p className="text-light">Account Receivable</p>
-      <LC />
+      <LC /> */}
     </div>
   );
 }

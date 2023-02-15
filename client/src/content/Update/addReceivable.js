@@ -22,7 +22,7 @@ let history = useNavigate();
       Supplier:Supplier,
       type:"rec"
     }
-    await fetch("http://10.5.32.70:5000/addRecievable", {
+    await fetch("http://127.0.0.1:5000/addRecievable", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

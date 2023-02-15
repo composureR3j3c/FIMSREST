@@ -59,7 +59,7 @@ export default function GetReceivable() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    await fetch("http://10.5.32.70:5000/recievable", {
+    await fetch("http://127.0.0.1:5000/recievable", {
       method: "GET",
     })
       .then((response) => response.json())
