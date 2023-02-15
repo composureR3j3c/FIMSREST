@@ -16,6 +16,9 @@ router.post('/addAsset',fimService.addAsset)
 router.get('/payable', fimLedService.payable)
 router.post('/addPayable',fimLedService.addPayable)
 
+router.get('/recievable', fimLedService.recievable)
+router.post('/addRecievable',fimLedService.addPayable)
+
 router.get('/asset', fimService.asset)
 router.post('/addAsset',fimService.addAsset)
 

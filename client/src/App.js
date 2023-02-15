@@ -25,7 +25,7 @@ function App() {
 
       <Route path="/getPayable" element={<GetPayable />} />
       <Route path="/getRecieveble" element={<GetRecieveble />} />
-      {/* <Route path="/addRecieveble" element={<AddRecieveble/>}/> */}
+      <Route path="/addRecieveble" element={<AddRecieveble/>}/>
       <Route path="/addPayable" element={<AddPayable />} />
       </Routes>
        

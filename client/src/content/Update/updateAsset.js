@@ -24,7 +24,7 @@ let history = useNavigate();
       Rate:Rate,
       orgValue:orgValue
     }
-    fetch("http://localhost:5000/addAsset", {
+    fetch("http://10.5.32.70:5000/addAsset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,16 +60,16 @@ let history = useNavigate();
         value={Category} onChange={(e)=>  {setCategory(e.target.value)}}/>
         
       <input
-        type="text"
+        type="number"
         className="form-control m-3"
         placeholder="Enter Depriciation Rate"
         value={Rate} onChange={(e)=>  {setRate(e.target.value)}}/>
       <input
-        type="text"
+        type="number"
         className="form-control m-3"
         placeholder="Enter Orginal Value"
         value={orgValue} onChange={(e)=>  {setorgValue(e.target.value)}}/>
-        <div>Date of Accustaion</div>
+        <div className="text-light">Date of Accusation</div>
         <DatePicker
         
         label="Enter Category"

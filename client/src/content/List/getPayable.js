@@ -56,7 +56,7 @@ export default function GetPayable() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    fetch("http://localhost:5000/payable", {
+    fetch("http://10.5.32.70:5000/payable", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -95,7 +95,34 @@ export default function GetPayable() {
           <td>Br. {res.Amount}</td>
           <td>{res.DueDate}</td>
           <td>Br. {res.Amount}</td>
-          
+          <td><button
+            onClick={() => {
+              // openModal();
+              // getDetail(req.ID);
+            }}
+            className="btn btn-info"
+          >
+            Payment Deatil
+          </button>
+          <button
+            onClick={() => {
+              // openModal();
+              // getDetail(req.ID);
+            }}
+            className="btn btn-warning m-2"
+          >
+           Edit
+          </button>
+          <button
+            onClick={() => {
+              // openModal();
+              // getDetail(req.ID);
+            }}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
+          </td>
         </tr>
     );
   });
@@ -151,7 +178,9 @@ export default function GetPayable() {
                 <th scope="col">
                   <p className="p-2">Balance Due</p>
                 </th>
-               
+                <th scope="col">
+                  <p className="p-2">Manage</p>
+                </th>
               </tr>
             </thead>
             <tbody>{bodyTable1}</tbody>

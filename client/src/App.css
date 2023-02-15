@@ -48,6 +48,9 @@ body{
  background: #0f0c29;  /* fallback for old browsers */
  background: linear-gradient(109.6deg, rgba(0, 0, 0, 0.93) 11.2%, rgb(7, 23, 31) 78.9%);
 }
+.Zeyada{
+  font-family:'Pacifico';
+}
 .navbar
 {
   background-color: #17A2B8 !important;

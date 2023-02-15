@@ -45,7 +45,6 @@ export default function GetRecieveble() {
   const [bodyTable, setbodyTable] = useState([]);
 
   const [ErrorMessage, setErrorMessage] = useState("");
-  const [Ttype, setTtype] = useState("Apollo");
 
   var transactionType = {};
 
@@ -57,7 +56,7 @@ export default function GetRecieveble() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    fetch("http://localhost:5000/profit", {
+    fetch("http://10.5.32.70:5000/recievable", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -80,31 +79,50 @@ export default function GetRecieveble() {
   var totalOut =0;
   var OverallBal=0;
   
-  var bodyTable1 = bodyTable.map((req) => {
-    // var serviceNm= req.service
-    var IN=(req.Type=="Income")?req.Amount:0
-    var OUT=(req.Type=="Expense")?req.Amount:0
+  var bodyTable1 = bodyTable.map((res) => {
+    // var serviceNm= res.service
+    var IN=(res.Type=="Income")?res.Amount:0
+    var OUT=(res.Type=="Expense")?res.Amount:0
     OverallBal+=IN-OUT
     totalIN+=parseInt(IN)
     totalOut=+parseInt(OUT)
     
     return (
-        <tr key={req.Amount}>
-          <td>{req.date}</td>
-          <td>{req.Description}</td>
-          <td>{req.Type}</td>
-          <td>{IN}</td>
-          <td>{OUT}</td>
-          <td>{OverallBal}</td>
-          <td>
-          <button
-            className="btn btn-danger"
+        <tr key={res.Amount}>
+          <td>{res.Date}</td>
+          <td>{res.Invoice}</td>
+          <td>{res.Supplier}</td>
+          <td>Br. {res.Amount}</td>
+          <td>{res.DueDate}</td>
+          <td>Br. {res.Amount}</td>
+          <td><button
             onClick={() => {
+              // openModal();
+              // getDetail(req.ID);
             }}
+            className="btn btn-info"
           >
-            DELETE
+            Payment Deatil
           </button>
-        </td>
+          <button
+            onClick={() => {
+              // openModal();
+              // getDetail(req.ID);
+            }}
+            className="btn btn-warning m-2"
+          >
+           Edit
+          </button>
+          <button
+            onClick={() => {
+              // openModal();
+              // getDetail(req.ID);
+            }}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
+          </td>
         </tr>
     );
   });
@@ -146,37 +164,37 @@ export default function GetRecieveble() {
                   <p className="p-2">Date</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Description</p>
+                  <p className="p-2">Invoice Number</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Category</p>
+                  <p className="p-2">Customer</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Income<br/>(Money IN)</p>
+                  <p className="p-2">Total Amount</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Expense<br/>(Money Out)</p>
+                  <p className="p-2">Due Date</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2">Overall Balance</p>
+                  <p className="p-2">Balance Due</p>
                 </th>
                 <th scope="col">
-                  <p className="p-2"></p>
+                  <p className="p-2">Manage</p>
                 </th>
               </tr>
             </thead>
             <tbody>{bodyTable1}</tbody>
-            <tfoot>
+            {/* <tfoot>
               <tr>
                 <td>total</td>
-                <td></td><td></td>
+                <td></td>
                 <td>{totalIN}</td>
                 <td>{totalOut}</td>
                 <td>{OverallBal}</td>
                 <td></td>
                 
               </tr>
-            </tfoot>
+            </tfoot> */}
           </table>
           <div className="text-danger">{ErrorMessage}</div>
         </div>

@@ -17,7 +17,7 @@ export default function UpdateProfit() {
       Amount:Amount,
       Desc:Desc
     }
-    fetch("http://localhost:5000/addTransaction", {
+    fetch("http://10.5.32.70:5000/addTransaction", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -23,12 +23,12 @@ export default function NavBar() {
             
             <li className="nav-item ">
               <a className="nav-link" href="/getPayable">
-                Account Payable 
+                Payable 
               </a>
             </li>
             <li className="nav-item ">
               <a className="nav-link" href="/getRecieveble">
-                Account Recieveble  
+                Recieveble  
               </a>
             </li>
             <Dropdown>

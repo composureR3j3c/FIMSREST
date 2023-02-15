@@ -57,7 +57,7 @@ export default function GetProfit() {
         <div className="loading-spinner"> </div>
       </div>
     );
-    fetch("http://localhost:5000/profit", {
+    fetch("http://10.5.32.70:5000/profit", {
       method: "GET",
     })
       .then((response) => response.json())
@@ -96,7 +96,7 @@ export default function GetProfit() {
           <td>{IN}</td>
           <td>{OUT}</td>
           <td>{OverallBal}</td>
-          <td>
+          {/* <td>
           <button
             className="btn btn-danger"
             onClick={() => {
@@ -104,7 +104,7 @@ export default function GetProfit() {
           >
             DELETE
           </button>
-        </td>
+        </td> */}
         </tr>
     );
   });
@@ -160,9 +160,9 @@ export default function GetProfit() {
                 <th scope="col">
                   <p className="p-2">Overall Balance</p>
                 </th>
-                <th scope="col">
+                {/* <th scope="col">
                   <p className="p-2"></p>
-                </th>
+                </th> */}
               </tr>
             </thead>
             <tbody>{bodyTable1}</tbody>
@@ -173,7 +173,7 @@ export default function GetProfit() {
                 <td>{totalIN}</td>
                 <td>{totalOut}</td>
                 <td>{OverallBal}</td>
-                <td></td>
+                {/* <td></td> */}
                 
               </tr>
             </tfoot>
