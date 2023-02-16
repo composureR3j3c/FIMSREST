@@ -1,5 +1,5 @@
 const express = require("express");
-const { insertPayable } = require("../SqlzDB/led/insertPayable");
+const { insertPayable, insertPaid } = require("../SqlzDB/led/insertPayable");
 const {insertBUY}=require("../SqlzDB/led/addPayment")
 const { selectPayable, selectPayment } = require("../SqlzDB/led/selectPayable");
 
@@ -33,6 +33,31 @@ exports.addPayable = async (req, res) => {
       req.body.Invoice,
       req.body.Supplier,
       req.body.type
+    );
+    if (dbData == null || dbData == "") {
+      res
+        .status(404)
+        .header("Content-Type", "application/json")
+        .send({ message: "insert not successful" });
+    } else {
+      res
+        .status(200)
+        .header("Content-Type", "application/json")
+        .send({ dbData });
+    }
+  }
+};
+exports.addPayment = async (req, res) => {
+  if (isNaN(req.body.Amount)) {
+    res
+      .status(422)
+      .header("Content-Type", "application/json")
+      .send({ message: "insert not successful" });
+  } else {
+    dbData = await insertPaid(
+      
+      req.body.Amount,
+      req.body.Invoice,req.body.pDate,
     );
     if (dbData == null || dbData == "") {
       res

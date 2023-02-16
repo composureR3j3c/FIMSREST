@@ -20,4 +20,22 @@ async function insertPayable(  acDate,DueDate,
 }
 }
 
-module.exports ={insertPayable}
+async function insertPaid(  
+  Amount,
+  Invoice,pDate
+  ) {
+    try {
+      conn();
+      const results = await sqlize.query(
+        `INSERT INTO payments (Amount, Invoice,Date) VALUES 
+        ('${Amount}', '${Invoice}','${pDate}');`
+      );
+      console.log(acDate)
+      console.log(results)
+      return results;
+    }catch(ex){
+        console.log(ex);
+}
+}
+
+module.exports ={insertPayable,insertPaid}

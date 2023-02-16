@@ -17,7 +17,7 @@ const customStyles = {
     background:
       "linear-gradient(109.6deg, rgba(0, 0, 0, 0.93) 11.2%, rgb(7, 23, 31) 78.9%)",
     color: "white",
-    width:"95%"
+    width:"30%"
   },
 };
 
@@ -129,7 +129,6 @@ export default function GetReceivable() {
           <td>{res.Supplier}</td>
           <td>Br. {res.Amount}</td>
           <td>{res.DueDate}</td>
-          <td>Br. {res.Amount}</td>
           <td><button
             onClick={() => {
               openModal(res.Invoice);;
@@ -147,12 +146,12 @@ export default function GetReceivable() {
             >
               <h2
                 ref={(_subtitle) => (subtitle = _subtitle)}
-                className="m-2 p-3"
+                className="m-2 p-3 justify-content-center "
               >
                 Payments
               </h2>
-              <div className="m-3 p-3 container col-lg-10  ">
-                <table className="table bg-white">
+              <div className="m-3 p-3 justify-content-center">
+                <table className="table bg-light justify-content-center">
                   <thead> <tr>
                   <th scope="col">
                   <p className="p-2">Amount</p>
@@ -237,9 +236,6 @@ export default function GetReceivable() {
                 </th>
                 <th scope="col">
                   <p className="p-2">Due Date</p>
-                </th>
-                <th scope="col">
-                  <p className="p-2">Balance Due</p>
                 </th>
                 <th scope="col">
                   <p className="p-2">Detail</p>

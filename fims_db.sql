@@ -140,7 +140,7 @@ CREATE TABLE `profit` (
   `ID` int(255) NOT NULL,
   `Type` varchar(255) NOT NULL DEFAULT 'Expense',
   `Amount` int(255) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` date NOT NULL,
   `Description` varchar(255) NOT NULL,
   `deleted` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

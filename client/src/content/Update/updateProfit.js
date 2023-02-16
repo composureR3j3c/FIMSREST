@@ -52,7 +52,7 @@ export default function UpdateProfit() {
               
             </select>
       <input
-        type="text"
+        type="number"
         className="form-control m-3"
         placeholder="Enter Amount"
         value={Amount}

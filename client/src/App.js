@@ -14,6 +14,7 @@ import GetPayable from './content/List/getPayable';
 import AddPayable from './content/Update/addPayable';
 import Home from './content/home';
 import Currency from './content/List/currency';
+import AddPayment from './content/Update/addPayment';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route path="/addReceivable" element={<AddReceivable/>}/>
       <Route path="/addPayable" element={<AddPayable />} />
       <Route path="/currency" element={<Currency/>}/>
+      <Route path="/ledger" element={<AddPayment/>}/>
             </Routes>
        
     </div>

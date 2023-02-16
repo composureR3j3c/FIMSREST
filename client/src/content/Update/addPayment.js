@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function addPayment() {
+export default function AddPayment() {
 
 
   const [tType, settType] = useState("");
-  const [Desc, setDesc] = useState("");
+  const [Invoice, setInvoice] = useState("");
   const [Amount, setAmount] = useState("");
   
   const [ErrorMessage, setErrorMessage] = useState("");
@@ -13,11 +13,11 @@ export default function addPayment() {
 
   async function addItem(params) {
     var item={
-      Type:tType,
+      pDate:new Date(),
       Amount:Amount,
-      Desc:Desc
+      Invoice:Invoice
     }
-    await fetch("http://127.0.0.1:5000/addTransaction", {
+    await fetch("http://127.0.0.1:5000/pay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,13 +46,13 @@ export default function addPayment() {
               
               }} 
                 >
-                  <option>--- Select Transaction ---</option>
-              <option value="Expense" >Expense</option>
-              <option value="Income"> Income</option>
+                  <option>--- Select Type ---</option>
+              <option value="Expense" >Reciveable</option>
+              <option value="Income"> Payable</option>
               
             </select>
       <input
-        type="text"
+        type="number"
         className="form-control m-3"
         placeholder="Enter Amount"
         value={Amount}
@@ -61,9 +61,9 @@ export default function addPayment() {
       <input
         type="text"
         className="form-control m-3"
-        placeholder="Enter Description"
-        value={Desc}
-        onChange={(e) => {setDesc(e.target.value)}}
+        placeholder="Enter Invoice"
+        value={Invoice}
+        onChange={(e) => {setInvoice(e.target.value)}}
       />
       {ErrorMessage}
       <button onClick={addItem} className='btn btn-success'>ADD</button>

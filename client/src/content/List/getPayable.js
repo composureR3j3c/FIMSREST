@@ -16,7 +16,7 @@ const customStyles = {
     background:
       "linear-gradient(109.6deg, rgba(0, 0, 0, 0.93) 11.2%, rgb(7, 23, 31) 78.9%)",
     color: "white",
-    width: "40%",
+    width: "30%",
   },
 };
 
@@ -126,7 +126,6 @@ export default function GetPayable() {
         <td>{res.Supplier}</td>
         <td>Br. {res.Amount}</td>
         <td>{res.DueDate}</td>
-        <td>Br. {res.Amount}</td>
         <td>
           <button
             onClick={() => {
@@ -149,8 +148,8 @@ export default function GetPayable() {
               >
                 Payments
               </h2>
-              <div className="m-3 p-3 container col-lg-10  ">
-                <table className="table bg-white">
+              <div className=" container justify-content-center ">
+                <table className="table bg-white justify-content-center">
                   <thead> <tr>
                   <th scope="col">
                   <p className="p-2">Amount</p>
@@ -236,9 +235,6 @@ export default function GetPayable() {
                 </th>
                 <th scope="col">
                   <p className="p-2">Due Date</p>
-                </th>
-                <th scope="col">
-                  <p className="p-2">Balance Due</p>
                 </th>
                 <th scope="col">
                   <p className="p-2">Detail</p>

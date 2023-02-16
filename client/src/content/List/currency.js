@@ -133,7 +133,7 @@ var currID=[]
                 ref={(_subtitle) => (subtitle = _subtitle)}
                 className="m-2 p-3"
               >
-                test
+                {ModalTitle}
               </h2>
               <div className="m-3 p-3">
                 <input
