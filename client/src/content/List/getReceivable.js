@@ -114,7 +114,7 @@ export default function GetReceivable() {
             }}
             className="btn btn-warning m-2"
           >
-           Edit
+           Update
           </button>
           <button
             onClick={() => {

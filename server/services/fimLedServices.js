@@ -1,5 +1,6 @@
 const express = require("express");
 const { insertPayable } = require("../SqlzDB/led/insertPayable");
+const {insertBUY}=require("../SqlzDB/led/addPayment")
 const { selectPayable } = require("../SqlzDB/led/selectPayable");
 
 exports.payable = async (req, res) => {
@@ -40,5 +41,31 @@ exports.addPayable = async (req, res) => {
     }
   }
 };
+exports.addBUY= async (req,res)=>{
+  if (isNaN(req.body.Buy) || isNaN(req.body.Sell)) {
+    res
+      .status(422)
+      .header("Content-Type", "application/json")
+      .send({ message: "insert not successful" });
+  } else {
+    dbData = await insertBUY
+    (
+      req.body.Buy,
+      req.body.Sell,
+      req.body.ID,
+    );
+    if (dbData == null || dbData == "") {
+      res
+        .status(404)
+        .header("Content-Type", "application/json")
+        .send({ message: "insert not successful" });
+    } else {
+      res
+        .status(200)
+        .header("Content-Type", "application/json")
+        .send({ dbData });
+    }
+  }
+}
 
 // Validate request

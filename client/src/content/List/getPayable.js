@@ -112,7 +112,7 @@ export default function GetPayable() {
             }}
             className="btn btn-warning m-2"
           >
-           Edit
+           Update
           </button>
           <button
             onClick={() => { 

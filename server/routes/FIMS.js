@@ -11,7 +11,7 @@ router.get('/profit', fimService.profit)
 router.post('/addTransaction',fimService.addTransaction)
 
 router.get('/asset', fimService.asset)
-router.post('/addAsset',fimService.addAsset)
+router.post('/addAsset',fimService.addAsset) 
 
 router.get('/payable', fimLedService.payable)
 router.post('/addPayable',fimLedService.addPayable)
@@ -24,5 +24,9 @@ router.post('/delete',fimService.deleteRecord)
 router.get('/asset', fimService.asset)
 router.post('/addAsset',fimService.addAsset)
 
+router.get('/currency',fimService.curr)
+
+// router.post('/pay',fimLedService.addPayment)
+router.post('/buy',fimLedService.addBUY)
 
 module.exports = router

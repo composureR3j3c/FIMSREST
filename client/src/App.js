@@ -13,6 +13,7 @@ import AddReceivable from './content/Update/addReceivable';
 import GetPayable from './content/List/getPayable';
 import AddPayable from './content/Update/addPayable';
 import Home from './content/home';
+import Currency from './content/List/currency';
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
       <Route path="/getReceivable" element={<GetReceivable />} />
       <Route path="/addReceivable" element={<AddReceivable/>}/>
       <Route path="/addPayable" element={<AddPayable />} />
-      </Routes>
+      <Route path="/currency" element={<Currency/>}/>
+            </Routes>
        
     </div>
   );

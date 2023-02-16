@@ -36,6 +36,11 @@ export default function NavBar() {
                 Receivable  
               </a>
             </li>
+            <li className="nav-item ">
+              <a className="nav-link" href="/currency">
+              Currency
+              </a>
+            </li>
             <Dropdown>
               <Dropdown.Toggle variant="warning" id="dropdown-basic">
                Manage Finances

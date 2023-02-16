@@ -1,6 +1,7 @@
 const express = require("express");
 const { insertAsset } = require("../SqlzDB/asset/insertAsset");
 const { selectAsset } = require("../SqlzDB/asset/selectAsset");
+const { selectCurr } = require("../SqlzDB/asset/SelectCurr");
 const { deleteRecord } = require("../SqlzDB/delete/deleteRec");
 const { insertProfit } = require("../SqlzDB/profit/insertTransact");
 const { selectProfit } = require("../SqlzDB/profit/selectProfit");
@@ -42,6 +43,13 @@ exports.asset = async (req, res) => {
 
   res.status(200).header("Content-Type", "application/json").send({ dbData });
 };
+exports.curr = async (req, res) => {
+  dbData = await selectCurr();
+
+  res.status(200).header("Content-Type", "application/json").send({ dbData });
+};
+
+
 exports.addAsset = async (req, res) => {
   if (isNaN(req.body.Rate) || isNaN(req.body.orgValue)) {
     res

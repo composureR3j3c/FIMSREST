@@ -5,7 +5,7 @@ export default function Home() {
     <div>
       <p className="text-light">Profit</p>
       <LC color="green"/> 
-      <p className="text-light">Fixed Asset</p>
+      {/* <p className="text-light">Fixed Asset</p> */}
       {/* <LC />
       <p className="text-light">Account Payable</p>
       <LC />
