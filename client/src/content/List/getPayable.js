@@ -17,7 +17,7 @@ const customStyles = {
     background:
       "linear-gradient(109.6deg, rgba(0, 0, 0, 0.93) 11.2%, rgb(7, 23, 31) 78.9%)",
     color: "white",
-    width: "95%",
+    width: "40%",
   },
 };
 
@@ -28,24 +28,24 @@ export default function GetPayable() {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   var [payments, setPaymnets] = useState(<tr></tr>);
   var paymentsBDy
-  var total=0
+  var [total,setTotal]=useState(0);
   async function openModal(Invoice) {
     var res = await paymentsDet(Invoice);
     var amounts = res.dbData;
-    
+    var tot=0
     paymentsBDy = amounts.map((res) => {
-       total+=parseFloat(res.Amount)
-       
+       tot+=parseFloat(res.Amount)
+       setTotal(tot)
       return (
         <tr key={res.Invoice}>
-          <td>{res.Amount}</td>
-          <td>{res.date}</td>
+          <td className="p-2">{res.Amount}</td>
+          <td className="p-2">{res.date}</td>
         </tr>
       );
-
+      
     });
     console.log(res);
- 
+    
     setPaymnets(paymentsBDy)
     setIsOpen(true);
   }
@@ -134,9 +134,9 @@ export default function GetPayable() {
             }}
             className="btn btn-warning"
           >
-            <div> Payments</div>
+            Payments
           </button>
-          <div className="container col-lg-6 w-50">
+          <div className="container col-lg-6 ">
             <Modal
               isOpen={modalIsOpen}
               onAfterOpen={afterOpenModal}
@@ -147,10 +147,10 @@ export default function GetPayable() {
                 ref={(_subtitle) => (subtitle = _subtitle)}
                 className="m-2 p-3"
               >
-                Paymnets
+                Payments
               </h2>
-              <div className="m-3 p-3 ">
-                <table>
+              <div className="m-3 p-3 container col-lg-10  ">
+                <table className="table bg-white">
                   <thead> <tr>
                   <th scope="col">
                   <p className="p-2">Amount</p>
@@ -161,7 +161,7 @@ export default function GetPayable() {
                 </tr></thead>
                   <tbody className="table">
                     {payments}</tbody>
-                    <tfoot>
+                    <tfoot class="text text-dark">
                       <tr>
                         <td>
                           Total 
