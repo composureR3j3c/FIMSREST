@@ -1,7 +1,7 @@
 const express = require("express");
 const { insertPayable } = require("../SqlzDB/led/insertPayable");
 const {insertBUY}=require("../SqlzDB/led/addPayment")
-const { selectPayable } = require("../SqlzDB/led/selectPayable");
+const { selectPayable, selectPayment } = require("../SqlzDB/led/selectPayable");
 
 exports.payable = async (req, res) => {
   dbData = await selectPayable('pay');
@@ -10,6 +10,12 @@ exports.payable = async (req, res) => {
 };
 exports.recievable = async (req, res) => {
   dbData = await selectPayable('rec');
+
+  res.status(200).header("Content-Type", "application/json").send({ dbData });
+};
+
+exports.detPayment = async (req, res) => {
+  dbData = await selectPayment(req.body.Invoice);
 
   res.status(200).header("Content-Type", "application/json").send({ dbData });
 };
@@ -53,7 +59,7 @@ exports.addBUY= async (req,res)=>{
       req.body.Buy,
       req.body.Sell,
       req.body.ID,
-      req.bod.nDate
+      req.body.nDate
     );
     if (dbData == null || dbData == "") {
       res

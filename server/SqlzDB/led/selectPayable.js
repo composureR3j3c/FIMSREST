@@ -14,4 +14,18 @@ async function selectPayable(
 }
 }
 
-module.exports ={selectPayable}
+async function selectPayment(
+  Invoice) {
+    try {
+      conn();
+      const [results, metadata] = await sqlize.query(
+        `SELECT * FROM payments where Invoice='${Invoice}' ORDER BY date;`
+      );
+      console.log(results)
+      return results;
+    }catch(ex){
+        console.log(ex);
+}
+}
+
+module.exports ={selectPayable,selectPayment}

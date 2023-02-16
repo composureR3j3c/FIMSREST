@@ -27,6 +27,7 @@ router.post('/addAsset',fimService.addAsset)
 router.get('/currency',fimService.curr)
 
 // router.post('/pay',fimLedService.addPayment)
+router.post('/payDet',fimLedService.detPayment)
 router.post('/buy',fimLedService.addBUY)
 
 module.exports = router

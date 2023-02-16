@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import deleteData from "../../helpers/deleteData";
+import deleteData, { paymentsDet } from "../../helpers/deleteData";
+import Modal from "react-modal";
 
 // import LC from "./linecharts/lineCt";
 import "../spinner.css";
-
 
 const customStyles = {
   content: {
@@ -17,24 +17,56 @@ const customStyles = {
     background:
       "linear-gradient(109.6deg, rgba(0, 0, 0, 0.93) 11.2%, rgb(7, 23, 31) 78.9%)",
     color: "white",
-    width:"95%"
+    width: "95%",
   },
 };
-
 
 // export var graphPoints=[]
 
 export default function GetPayable() {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  var [payments, setPaymnets] = useState(<tr></tr>);
+  var paymentsBDy
+  var total=0
+  async function openModal(Invoice) {
+    var res = await paymentsDet(Invoice);
+    var amounts = res.dbData;
+    
+    paymentsBDy = amounts.map((res) => {
+       total+=parseFloat(res.Amount)
+       
+      return (
+        <tr key={res.Invoice}>
+          <td>{res.Amount}</td>
+          <td>{res.date}</td>
+        </tr>
+      );
+
+    });
+    console.log(res);
  
+    setPaymnets(paymentsBDy)
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#ffffff";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   const [Div1Class, setDiv1Class] = useState(
     "row justify-content-center d-flex align-items-center "
   );
   const [btnClass, setBtnClass] = useState("btn btn-primary m-2  mb-3");
-  const [Payload, setPayload] =
-    useState();
-    // <div className="spinner-container">
-    //   <div className="loading-spinner"></div>
-    // </div>
+  const [Payload, setPayload] = useState();
+  // <div className="spinner-container">
+  //   <div className="loading-spinner"></div>
+  // </div>
 
   const [TimeDiffColor, setTimeDiffColor] = useState("text text-primary");
 
@@ -50,8 +82,8 @@ export default function GetPayable() {
   var transactionType = {};
 
   async function loadBody() {
-    setbodyTable([])
-    bodyTable1=[]
+    setbodyTable([]);
+    bodyTable1 = [];
     setSpinner(
       <div className="spinner-container mb-3">
         <div className="loading-spinner"> </div>
@@ -62,11 +94,10 @@ export default function GetPayable() {
     })
       .then((response) => response.json())
       .then((data) => {
-        
         console.log(data);
-        
+
         setbodyTable(data.dbData);
-        var responseArray =data.dbData
+        var responseArray = data.dbData;
         console.log(bodyTable);
         setSpinner("");
       })
@@ -76,61 +107,91 @@ export default function GetPayable() {
       });
   }
 
-  var totalIN=0;
-  var totalOut =0;
-  var OverallBal=0;
-  
+  var totalIN = 0;
+  var totalOut = 0;
+  var OverallBal = 0;
+
   var bodyTable1 = bodyTable.map((res) => {
     // var serviceNm= res.service
-    var IN=(res.Type=="Income")?res.Amount:0
-    var OUT=(res.Type=="Expense")?res.Amount:0
-    OverallBal+=IN-OUT
-    totalIN+=parseInt(IN)
-    totalOut=+parseInt(OUT)
-    
+    var IN = res.Type == "Income" ? res.Amount : 0;
+    var OUT = res.Type == "Expense" ? res.Amount : 0;
+    OverallBal += IN - OUT;
+    totalIN += parseInt(IN);
+    totalOut = +parseInt(OUT);
+
     return (
-        <tr key={res.Amount}>
-          <td>{res.Date}</td>
-          <td>{res.Invoice}</td>
-          <td>{res.Supplier}</td>
-          <td>Br. {res.Amount}</td>
-          <td>{res.DueDate}</td>
-          <td>Br. {res.Amount}</td>
-          <td><button
-            onClick={() => {
-              // openModal();
-              // getDetail(req.ID);
-            }}
-            className="btn btn-info"
-          >
-            Payment Deatil
-          </button>
+      <tr key={res.Amount}>
+        <td>{res.Date}</td>
+        <td>{res.Invoice}</td>
+        <td>{res.Supplier}</td>
+        <td>Br. {res.Amount}</td>
+        <td>{res.DueDate}</td>
+        <td>Br. {res.Amount}</td>
+        <td>
           <button
             onClick={() => {
-              // openModal();
-              // getDetail(req.ID);
+              openModal(res.Invoice);
             }}
-            className="btn btn-warning m-2"
+            className="btn btn-warning"
           >
-           Update
+            <div> Payments</div>
           </button>
+          <div className="container col-lg-6 w-50">
+            <Modal
+              isOpen={modalIsOpen}
+              onAfterOpen={afterOpenModal}
+              onRequestClose={closeModal}
+              style={customStyles}
+            >
+              <h2
+                ref={(_subtitle) => (subtitle = _subtitle)}
+                className="m-2 p-3"
+              >
+                Paymnets
+              </h2>
+              <div className="m-3 p-3 ">
+                <table>
+                  <thead> <tr>
+                  <th scope="col">
+                  <p className="p-2">Amount</p>
+                </th>
+                <th scope="col">
+                  <p className="p-2">Date</p>
+                </th>
+                </tr></thead>
+                  <tbody className="table">
+                    {payments}</tbody>
+                    <tfoot>
+                      <tr>
+                        <td>
+                          Total 
+                        </td>
+                        <td>{total}</td>
+                      </tr>
+                    </tfoot>
+                </table>
+              </div>
+            </Modal>
+          </div>
+        </td>
+        <td>
           <button
-            onClick={() => { 
-              deleteData("payable",res.ID);
+            onClick={() => {
+              deleteData("payable", res.ID);
               window.location.reload(false);
             }}
-            className="btn btn-danger"
+            className="btn btn-danger "
           >
             Delete
           </button>
-          </td>
-        </tr>
+        </td>
+      </tr>
     );
   });
 
   useEffect(() => {
     let ignore = false;
-    
+
     if (!ignore) loadBody();
     return () => {
       ignore = true;
@@ -146,7 +207,7 @@ export default function GetPayable() {
         <div className={Div1Class}>
           <div className="col-lg-12 ">
             {/* <p>{Ttype} API calls</p> */}
-{/*             
+            {/*             
             <button onClick={loadBody} type="reload" className={btnClass}>
               Refresh
             </button> */}
@@ -178,6 +239,9 @@ export default function GetPayable() {
                 </th>
                 <th scope="col">
                   <p className="p-2">Balance Due</p>
+                </th>
+                <th scope="col">
+                  <p className="p-2">Detail</p>
                 </th>
                 <th scope="col">
                   <p className="p-2">Manage</p>
