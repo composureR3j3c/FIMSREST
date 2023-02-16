@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import deleteData from "../../helpers/deleteData";
+import deleteData, { paymentsDet }  from "../../helpers/deleteData";
+import Modal from "react-modal";
 
-import { useNavigate } from "react-router-dom";
-
-// import LC from "./linecharts/lineCt";
 import "../spinner.css";
 
 
@@ -27,7 +25,41 @@ const customStyles = {
 // export var graphPoints=[]
 
 export default function GetReceivable() {
- let history = useNavigate();
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  var [payments, setPaymnets] = useState(<tr></tr>);
+  var paymentsBDy
+  var [total,setTotal]=useState(0);
+  async function openModal(Invoice) {
+    var res = await paymentsDet(Invoice);
+    var amounts = res.dbData;
+    var tot=0
+    paymentsBDy = amounts.map((res) => {
+       tot+=parseFloat(res.Amount)
+       setTotal(tot)
+      return (
+        <tr key={res.Invoice}>
+          
+          <td className="p-2">{res.date}</td>
+          <td className="p-2">{res.Amount}</td>
+        </tr>
+      );
+      
+    });
+    console.log(res);
+    
+    setPaymnets(paymentsBDy)
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#ffffff";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   const [Div1Class, setDiv1Class] = useState(
     "row justify-content-center d-flex align-items-center "
   );
@@ -100,22 +132,50 @@ export default function GetReceivable() {
           <td>Br. {res.Amount}</td>
           <td><button
             onClick={() => {
-              // openModal();
-              // getDetail(req.ID);
+              openModal(res.Invoice);;
             }}
-            className="btn btn-info"
+            className="btn btn-warning"
           >
-            Payment Deatil
+            Payments
           </button>
-          <button
-            onClick={() => {
-              // openModal();
-              // getDetail(req.ID);
-            }}
-            className="btn btn-warning m-2"
-          >
-           Update
-          </button>
+          <div className="container col-lg-6 ">
+            <Modal
+              isOpen={modalIsOpen}
+              onAfterOpen={afterOpenModal}
+              onRequestClose={closeModal}
+              style={customStyles}
+            >
+              <h2
+                ref={(_subtitle) => (subtitle = _subtitle)}
+                className="m-2 p-3"
+              >
+                Payments
+              </h2>
+              <div className="m-3 p-3 container col-lg-10  ">
+                <table className="table bg-white">
+                  <thead> <tr>
+                  <th scope="col">
+                  <p className="p-2">Amount</p>
+                </th>
+                <th scope="col">
+                  <p className="p-2">Date</p>
+                </th>
+                </tr></thead>
+                  <tbody className="table">
+                    {payments}</tbody>
+                    <tfoot class="text text-dark">
+                      <tr>
+                        <td>
+                          Total 
+                        </td>
+                        <td>{total}</td>
+                      </tr>
+                    </tfoot>
+                </table>
+              </div>
+            </Modal> 
+          </div>
+          </td><td>
           <button
             onClick={() => {
               deleteData("payable",res.ID);
@@ -166,7 +226,7 @@ export default function GetReceivable() {
                 <th scope="col">
                   <p className="p-2">Date</p>
                 </th>
-                <th scope="col">
+                <th scope="col"> 
                   <p className="p-2">Invoice Number</p>
                 </th>
                 <th scope="col">
@@ -180,6 +240,9 @@ export default function GetReceivable() {
                 </th>
                 <th scope="col">
                   <p className="p-2">Balance Due</p>
+                </th>
+                <th scope="col">
+                  <p className="p-2">Detail</p>
                 </th>
                 <th scope="col">
                   <p className="p-2">Manage</p>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import deleteData, { paymentsDet } from "../../helpers/deleteData";
 import Modal from "react-modal";
 
-// import LC from "./linecharts/lineCt";
 import "../spinner.css";
 
 const customStyles = {
@@ -38,8 +37,9 @@ export default function GetPayable() {
        setTotal(tot)
       return (
         <tr key={res.Invoice}>
-          <td className="p-2">{res.Amount}</td>
           <td className="p-2">{res.date}</td>
+          <td className="p-2">{res.Amount}</td>
+          
         </tr>
       );
       
@@ -171,7 +171,7 @@ export default function GetPayable() {
                     </tfoot>
                 </table>
               </div>
-            </Modal>
+            </Modal> 
           </div>
         </td>
         <td>

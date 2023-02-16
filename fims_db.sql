@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2023 at 12:46 PM
+-- Generation Time: Feb 16, 2023 at 01:58 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -127,7 +127,8 @@ CREATE TABLE `payments` (
 
 INSERT INTO `payments` (`ID`, `Amount`, `date`, `Invoice`) VALUES
 (1, '1000.0000', '2023-02-16', '2PX-1234'),
-(2, '9000.0000', '2023-02-16', '2PX-1234');
+(2, '9000.0000', '2023-02-16', '2PX-1234'),
+(3, '200.0000', '2023-02-16', 'A112');
 
 -- --------------------------------------------------------
 
@@ -216,7 +217,7 @@ ALTER TABLE `payable`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `profit`
