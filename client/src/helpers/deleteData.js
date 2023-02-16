@@ -21,7 +21,8 @@ export async function UpdateCurr(Buy,Sell,ID) {
   var item={
     Buy:Buy,
     Sell:Sell,
-    ID:ID
+    ID:ID,
+    nDate:new Date()
     }
     console.log(item)
 

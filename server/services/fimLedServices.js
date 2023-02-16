@@ -53,6 +53,7 @@ exports.addBUY= async (req,res)=>{
       req.body.Buy,
       req.body.Sell,
       req.body.ID,
+      req.bod.nDate
     );
     if (dbData == null || dbData == "") {
       res
