@@ -48,7 +48,7 @@ export default function NavBar() {
 
               <Dropdown.Menu>
                 <Dropdown.Item href="/addAsset"> Add Fixed Asset</Dropdown.Item>
-                <Dropdown.Item href="/addProfit">Add Profit</Dropdown.Item>
+                <Dropdown.Item href="/addProfit">Add Expense/Income</Dropdown.Item>
                 <Dropdown.Item href="/addReceivable"> Add Receivable</Dropdown.Item>
                 <Dropdown.Item href="/addPayable">Add Payable</Dropdown.Item>
                 <Dropdown.Item href="/ledger">Manage Ledger</Dropdown.Item>

@@ -29,6 +29,7 @@ export default function GetPayable() {
   var paymentsBDy
   var [total,setTotal]=useState(0);
   async function openModal(Invoice) {
+    setTotal(0)
     var res = await paymentsDet(Invoice);
     var amounts = res.dbData;
     var tot=0
@@ -56,6 +57,7 @@ export default function GetPayable() {
   }
 
   function closeModal() {
+    setTotal(0)
     setIsOpen(false);
   }
 

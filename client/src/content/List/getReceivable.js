@@ -31,6 +31,7 @@ export default function GetReceivable() {
   var paymentsBDy
   var [total,setTotal]=useState(0);
   async function openModal(Invoice) {
+    setTotal(0)
     var res = await paymentsDet(Invoice);
     var amounts = res.dbData;
     var tot=0
@@ -53,6 +54,7 @@ export default function GetReceivable() {
   }
 
   function afterOpenModal() {
+    
     // references are now sync'd and can be accessed.
     subtitle.style.color = "#ffffff";
   }
